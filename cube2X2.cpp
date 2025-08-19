@@ -3,6 +3,7 @@
 using namespace std;
 unordered_map<int,char>m{{97,'W'},{98,'O'},{99,'G'},{100,'R'},{101,'B'},{102,'Y'}};
 ll solvedhash,unsolvedhash;
+unordered_map<ll,string>checkdfs;
 vector<string>ans;int anssize=15;
 void solvedcube(vector<char>&v){
     for(int i=0;i<6;i++){
@@ -100,7 +101,6 @@ ll hashCube(vector<char>&v) {
       h=h*b+(v[i]-'a');
     }return h;
 }
-unordered_map<ll,string>checkdfs;
 string solvebydfs(vector<char>&v,string s){
   ee++;
   int x=s.size();
@@ -177,20 +177,25 @@ int main(){
     opp['B'][1]='f';opp['D'][0]='U';opp['D'][1]='u';
     solvedcube(v);
     solvedcube(w);
+    
+    // write your sequences of moves here
     f(v);d(v);u(v);r(v);
     r(v);l(v);f(v);d(v);
     b(v);u(v);l(v);f(v);
     f(v);bprime(v);
+    
+    
+    cout<<"Your initial cube:\n";
     printcube(v);
     ww=v;uu=w;
     solvedhash=hashCube(w);
     unsolvedhash=hashCube(v);
     solvebydfsrev(uu,"");solvebydfs(v,"");
-    cout<<ee<<endl;
+    cout<<"Number of states searched: "<<ee<<endl;
     if(ans.size()!=0){
         cout<<anssize<<endl;
+        cout<<"Your solutions:\n";
         for(auto x:ans)if(x.size()==anssize)cout<<x<<endl;
-        cout<<ans.size()<<" "<<checkdfs.size()<<endl;
     }
     else cout<<"No solution found!!"<<endl;
     return 0;
