@@ -193,7 +193,8 @@ int main(){
     solvebydfsrev(uu,"");solvebydfs(v,"");
     cout<<"Number of states searched: "<<ee<<endl;
     if(ans.size()!=0){
-        cout<<anssize<<endl;
+        if(anssize!=1)cout<<"Cube can be solved in minimum "<<anssize<<" moves.\n";
+        else cout<<"Cube can be solved in minimum "<<anssize<<" move.\n";
         cout<<"Your solutions:\n";
         for(auto x:ans)if(x.size()==anssize)cout<<x<<endl;
     }
