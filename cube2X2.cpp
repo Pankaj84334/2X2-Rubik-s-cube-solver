@@ -179,11 +179,11 @@ int main(){
     solvedcube(w);
     
     // write your sequences of moves here
-    f(v);d(v);u(v);r(v);
-    r(v);l(v);f(v);d(v);
-    b(v);u(v);l(v);f(v);
-    f(v);bprime(v);
-    
+    r(v);u(v);rprime(v);uprime(v);
+    rprime(v);f(v);r(v);r(v);
+    uprime(v);rprime(v);uprime(v);
+    r(v);u(v);rprime(v);fprime(v);
+    //For above pattern minimum 13 moves are required
     
     cout<<"Your initial cube:\n";
     printcube(v);
