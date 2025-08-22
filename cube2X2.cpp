@@ -1,3 +1,10 @@
+/* 
+    TIPS
+    1)If unordered_map is not working change it to map (line 9 and 11)
+    2)Use strong compiler to not to get tle or you can reduce depth from 7 to 6 for both or any one dfs (line 125 and 156)
+    3)Reducing depth from 7 to 6 in both will fail for 13 and 14 moves answer but do not worry they are very rare
+    3)Reducing depth from 7 to 6 in one will fail for 14 moves answer but do not worry they are very very very rare
+*/
 #include <bits/stdc++.h>
 #define ll long long
 using namespace std;
