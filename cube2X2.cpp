@@ -1,9 +1,9 @@
 #include <bits/stdc++.h>
 #define ll long long
 using namespace std;
-unordered_map<int,char>m{{97,'W'},{98,'O'},{99,'G'},{100,'R'},{101,'B'},{102,'Y'}};
+map<int,char>m{{97,'W'},{98,'O'},{99,'G'},{100,'R'},{101,'B'},{102,'Y'}};
 ll solvedhash,unsolvedhash;
-unordered_map<ll,string>checkdfs;
+map<ll,string>checkdfs;
 vector<string>ans;int anssize=15;
 void solvedcube(vector<char>&v){
     for(int i=0;i<6;i++){
@@ -101,10 +101,12 @@ ll hashCube(vector<char>&v) {
       h=h*b+(v[i]-'a');
     }return h;
 }
+set<ll>se;
 string solvebydfs(vector<char>&v,string s){
   ee++;
   int x=s.size();
   ll a=hashCube(v);
+  se.insert(a);
   if(a==solvedhash){
       anssize=min(x,anssize);
       ans.push_back(s);return "";
@@ -115,7 +117,7 @@ string solvebydfs(vector<char>&v,string s){
     anssize=min(tt,anssize);
     ans.push_back(t);return "";
   }
-  if(x>=6)return "";
+  if(x>=7)return "";
   for(auto y:moves){
     char a=y.second.first,b=y.second.second;
     if((x<=1||s[x-2]!=s[x-1]||s[x-1]!=a)&&(!x||(x&&s[x-1]!=b))){
@@ -140,12 +142,13 @@ string solvebydfs(vector<char>&v,string s){
   ee++;
   int x=s.size();
   ll a=hashCube(v);
+  se.insert(a);
   if(a==unsolvedhash){
       anssize=min(x,anssize);
       ans.push_back(s);return "";
   }
   checkdfs[a]=s;
-  if(x>=6)return "";
+  if(x>=7)return "";
   for(auto y:moves){
     char a=y.second.first,b=y.second.second;
     if((x<=1||s[1]!=s[0]||s[0]!=a)&&(!x||(x&&s[0]!=b))){
@@ -191,7 +194,8 @@ int main(){
     solvedhash=hashCube(w);
     unsolvedhash=hashCube(v);
     solvebydfsrev(uu,"");solvebydfs(v,"");
-    cout<<"Number of states searched: "<<ee<<endl;
+    cout<<"Number of times dfs called: "<<ee<<endl;
+    cout<<"Number of states searched: "<<se.size()<<endl;
     if(ans.size()!=0){
         if(anssize!=1)cout<<"Cube can be solved in minimum "<<anssize<<" moves.\n";
         else cout<<"Cube can be solved in minimum "<<anssize<<" move.\n";
