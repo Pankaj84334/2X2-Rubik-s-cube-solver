@@ -1,9 +1,9 @@
 #include <bits/stdc++.h>
 #define ll long long
 using namespace std;
-map<int,char>m{{97,'W'},{98,'O'},{99,'G'},{100,'R'},{101,'B'},{102,'Y'}};
+unordered_map<int,char>m{{97,'W'},{98,'O'},{99,'G'},{100,'R'},{101,'B'},{102,'Y'}};
 ll solvedhash,unsolvedhash;
-map<ll,string>checkdfs;
+unordered_map<ll,string>checkdfs;
 vector<string>ans;int anssize=15;
 void solvedcube(vector<char>&v){
     for(int i=0;i<6;i++){
